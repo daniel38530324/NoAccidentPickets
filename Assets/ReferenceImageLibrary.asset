@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: ReferenceImageLibrary
+  m_EditorClassIdentifier: 
+  m_GuidLow: 4730592595262257126
+  m_GuidHigh: 10596860683115091103
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 4826963164356777084
+      m_GuidHigh: 15614483099472597684
+    m_SerializedTextureGuid:
+      m_GuidLow: 636400671323478138
+      m_GuidHigh: 14441084796465131131
+    m_Size: {x: 0.1, y: 0.16395174}
+    m_SpecifySize: 1
+    m_Name: Water01
+    m_Texture: {fileID: 2800000, guid: ed0e587af30908d47b2e99381c0a69c8, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 4957255519511931170
+      m_GuidHigh: 3830608863100453558
+    m_SerializedTextureGuid:
+      m_GuidLow: 4694042669761864123
+      m_GuidHigh: 317967736543153064
+    m_Size: {x: 0.1, y: 0.1641994}
+    m_SpecifySize: 1
+    m_Name: Water03
+    m_Texture: {fileID: 2800000, guid: 23aea1bb96f04124a88bb0c2f8a56904, type: 3}
