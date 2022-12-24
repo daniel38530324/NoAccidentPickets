@@ -22,7 +22,7 @@ public class ImageTracking : MonoBehaviour
         trackedImageManager = FindObjectOfType<ARTrackedImageManager>();
         foreach (GameObject prefab in placeablePrefab)
         {
-            GameObject newPrefab = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+            GameObject newPrefab = Instantiate(prefab, Vector3.zero, prefab.transform.rotation);
             newPrefab.name = prefab.name;
             spawnedPrefabs.Add(prefab.name, newPrefab);
         }
