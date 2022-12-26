@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public int playerCount;
     public int currentPlayerId;
     public int[] playerScores;
-    bool isWaitForAnim;
+    public bool isWaitForAnim;
 
     private void Update()
     {
@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
     //掃完卡牌後得分
     public void GetScore(int _score)
     {
+        if (isWaitForAnim)
+            return;
         playerScores[currentPlayerId] += _score;
         uIManager.SetScoreText(currentPlayerId, playerScores[currentPlayerId]);
         StartCoroutine(NextRound());
