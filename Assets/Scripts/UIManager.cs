@@ -7,11 +7,32 @@ public class UIManager : MonoBehaviour
 {
     public GameManager gameManager;
     public GameObject menu;
+    
     public GameObject startInitMenu;
+    public Dropdown playerCountDropdown;
+
     public GameObject settingMenu;
     public GameObject settingBtn;
 
-    public Dropdown playerCountDropdown;
+    public GameObject[] playerScorePanel;
+    public Text[] scoreTexts;
+
+    public GameObject systemCanvas;
+    public Text systemText;
+
+    public void Initialize(int playerCount)
+    {
+        if(playerCount == 4){
+            playerScorePanel[0].SetActive(false);
+            playerScorePanel[1].SetActive(false);
+        }else if(playerCount == 5){
+            playerScorePanel[0].SetActive(true);
+            playerScorePanel[1].SetActive(false);
+        }else if(playerCount == 6){
+            playerScorePanel[0].SetActive(true);
+            playerScorePanel[1].SetActive(true);
+        }
+    }
 
     public void Btn_StartGame()
     {
@@ -24,6 +45,10 @@ public class UIManager : MonoBehaviour
         startInitMenu.SetActive(false);
         gameManager.Initialize(playerCountDropdown.value + 4);
         settingBtn.SetActive(true);
+        for (int i = 0; i < 6; i++)
+        {
+            scoreTexts[i].text = "0";
+        }
     }
 
     public void Btn_BackToMenu()
@@ -42,5 +67,16 @@ public class UIManager : MonoBehaviour
     public void Btn_Quit()
     {
         Application.Quit();
+    }
+
+    public void SetScoreText(int playerID, int score)
+    {
+        scoreTexts[playerID].text = score.ToString();
+    }
+
+    public void SetSystemText(bool _open, string _text)
+    {
+        systemCanvas.SetActive(_open);
+        systemText.text = _text;
     }
 }

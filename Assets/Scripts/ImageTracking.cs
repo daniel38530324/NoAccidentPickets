@@ -8,6 +8,8 @@ using UnityEngine.XR.ARSubsystems;
 
 public class ImageTracking : MonoBehaviour
 {
+    public GameManager gameManager;
+
     [SerializeField]
     private GameObject[] placeablePrefab;
 
