@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         playerCount = _playerCount;
         currentPlayerId = 0;
         playerScores = new int[_playerCount];
-        uIManager.SetSystemText(true, $"輪到第{currentPlayerId + 1}玩家");
+        uIManager.SetSystemText(true, $"輪到第 <color=red>{currentPlayerId + 1}</color> 玩家");
     }
 
     //掃完卡牌後得分
@@ -43,10 +43,23 @@ public class GameManager : MonoBehaviour
     {
         uIManager.SetSystemText(false, "");
         isWaitForAnim = true;
+        uIManager.passBtn.SetActive(false);
         yield return new WaitForSeconds(2f);//parm=動畫時間，播玩動畫換下一輪
         isWaitForAnim = false;
         currentPlayerId++;
         currentPlayerId %= playerCount;
-        uIManager.SetSystemText(true, $"輪到第{currentPlayerId + 1}玩家");
+        uIManager.SetSystemText(true, $"輪到第 <color=red>{currentPlayerId + 1}</color> 玩家");
+        uIManager.passBtn.SetActive(true);
+    }
+
+    public void PassRound()
+    {
+        if (isWaitForAnim)
+            return;
+
+        isWaitForAnim = false;
+        currentPlayerId++;
+        currentPlayerId %= playerCount;
+        uIManager.SetSystemText(true, $"輪到第 <color=red>{currentPlayerId + 1}</color> 玩家");
     }
 }
