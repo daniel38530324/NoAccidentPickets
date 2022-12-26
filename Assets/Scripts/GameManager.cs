@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public int currentPlayerId;
     public int[] playerScores;
     public bool isWaitForAnim;
+    public bool closeAnim;
 
     private void Update()
     {
@@ -34,18 +35,21 @@ public class GameManager : MonoBehaviour
             return;
         playerScores[currentPlayerId] += _score;
         uIManager.SetScoreText(currentPlayerId, playerScores[currentPlayerId]);
-        StartCoroutine(NextRound());
         uIManager.SetSystemText(true, $"播放動畫中...");
+        StartCoroutine(NextRound());
     }
     
     //輪到下為玩家行動時呼叫
     public IEnumerator NextRound()
     {
-        uIManager.SetSystemText(false, "");
-        isWaitForAnim = true;
-        uIManager.passBtn.SetActive(false);
-        yield return new WaitForSeconds(20f);//parm=動畫時間，播玩動畫換下一輪
-        
+        while(!closeAnim){
+            isWaitForAnim = true;
+            uIManager.passBtn.SetActive(false);
+            yield return null;
+            //yield return new WaitForSeconds(20f);//parm=動畫時間，播玩動畫換下一輪
+        }
+            
+        closeAnim = false;
         isWaitForAnim = false;
         currentPlayerId++;
         currentPlayerId %= playerCount;
@@ -62,5 +66,11 @@ public class GameManager : MonoBehaviour
         currentPlayerId++;
         currentPlayerId %= playerCount;
         uIManager.SetSystemText(true, $"輪到第 <color=red>{currentPlayerId + 1}</color> 玩家");
+    }
+
+    //當沒有相機沒掃到照片時呼叫此方法來輪到下一位玩家
+    public void CloseCardTarget()
+    {
+        closeAnim = true;
     }
 }
