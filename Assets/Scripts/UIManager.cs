@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     public GameObject systemCanvas;
     public Text systemText;
     public GameObject passBtn;
+    public GameObject closeAnimBtn;
 
     public void Initialize(int playerCount)
     {
@@ -34,6 +35,7 @@ public class UIManager : MonoBehaviour
             playerScorePanel[1].SetActive(true);
         }
         passBtn.SetActive(true);
+        closeAnimBtn.SetActive(false);
     }
 
     public void Btn_StartGame()
@@ -85,5 +87,10 @@ public class UIManager : MonoBehaviour
     public void Btn_Skip()
     {
         gameManager.PassRound();
+    }
+
+    public void Btn_CloseAnim()
+    {
+        gameManager.CloseCardTarget();
     }
 }

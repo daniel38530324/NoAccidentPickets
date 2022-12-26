@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     {
         while(!closeAnim){
             uIManager.passBtn.SetActive(false);
+            uIManager.closeAnimBtn.SetActive(true);
             yield return null;
             //yield return new WaitForSeconds(20f);//parm=動畫時間，播玩動畫換下一輪
         }
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
         currentPlayerId %= playerCount;
         uIManager.SetSystemText(true, $"輪到第 <color=red>{currentPlayerId + 1}</color> 玩家");
         uIManager.passBtn.SetActive(true);
+        uIManager.closeAnimBtn.SetActive(false);
     }
 
     public void PassRound()

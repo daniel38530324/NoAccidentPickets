@@ -62,7 +62,6 @@ public class ImageTracking : MonoBehaviour
             {
                 imageState = false;
                 spawnedPrefabs["WaterPlay_01"].SetActive(false);
-                gameManager.CloseCardTarget();
             }
 
             if (trackedImage.trackingState == TrackingState.Limited)
