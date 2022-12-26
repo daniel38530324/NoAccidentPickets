@@ -3658,7 +3658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67de117f97e90bb44b2c82d619ba1b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 454041670}
   placeablePrefab:
   - {fileID: 1033336750456289774, guid: 005f6f82d65239244a2a6e72dcec7817, type: 3}
   - {fileID: 6273360931217799830, guid: 53ef4ffa2a1734b4c9d46dc16f379453, type: 3}

@@ -55,13 +55,14 @@ public class ImageTracking : MonoBehaviour
                 imageState = true;
                 spawnedPrefabs["WaterPlay_01"].SetActive(true);
                 spawnedPrefabs["WaterPlay_01"].transform.position = (spawnedPrefabs["Water01"].transform.position + spawnedPrefabs["Water03"].transform.position) / 2;
-                GameManager gm = FindObjectOfType<GameManager>();
-                gm.GetScore(1);
+
+                gameManager.GetScore(1);
             }
             else
             {
                 imageState = false;
                 spawnedPrefabs["WaterPlay_01"].SetActive(false);
+                gameManager.CloseCardTarget();
             }
 
             if (trackedImage.trackingState == TrackingState.Limited)

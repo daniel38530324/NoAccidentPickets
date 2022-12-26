@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         playerScores[currentPlayerId] += _score;
         uIManager.SetScoreText(currentPlayerId, playerScores[currentPlayerId]);
         uIManager.SetSystemText(true, $"播放動畫中...");
+        isWaitForAnim = true;
         StartCoroutine(NextRound());
     }
     
@@ -43,7 +44,6 @@ public class GameManager : MonoBehaviour
     public IEnumerator NextRound()
     {
         while(!closeAnim){
-            isWaitForAnim = true;
             uIManager.passBtn.SetActive(false);
             yield return null;
             //yield return new WaitForSeconds(20f);//parm=動畫時間，播玩動畫換下一輪
