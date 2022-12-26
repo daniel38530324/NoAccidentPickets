@@ -44,7 +44,8 @@ public class GameManager : MonoBehaviour
         uIManager.SetSystemText(false, "");
         isWaitForAnim = true;
         uIManager.passBtn.SetActive(false);
-        yield return new WaitForSeconds(2f);//parm=動畫時間，播玩動畫換下一輪
+        yield return new WaitForSeconds(20f);//parm=動畫時間，播玩動畫換下一輪
+        
         isWaitForAnim = false;
         currentPlayerId++;
         currentPlayerId %= playerCount;
