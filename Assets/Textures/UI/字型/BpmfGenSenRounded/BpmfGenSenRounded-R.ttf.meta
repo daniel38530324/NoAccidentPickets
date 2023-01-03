@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 9c5d05a36b15375439528955200bc5e2
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Bpmf GenSen Rounded
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c7566ffebf02782488003e002bf84e66, type: 3}
+  - {fileID: 12800000, guid: 76b63e4bd5f784144b01af06de2dd026, type: 3}
+  - {fileID: 12800000, guid: c363921eca2970748b0e82dbdc899b5a, type: 3}
+  - {fileID: 12800000, guid: 4080963dceb760448b415c9515f68051, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
