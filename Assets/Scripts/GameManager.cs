@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
         playerCount = _playerCount;
         currentPlayerId = 0;
         playerScores = new int[_playerCount];
-        uIManager.SetSystemText(true, $"輪到第 <color=red>{currentPlayerId + 1}</color> 玩家");
+        uIManager.SetSystemText(true, currentPlayerId);
     }
 
     //掃完卡牌後得分
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
             return;
         playerScores[currentPlayerId] += _score;
         uIManager.SetScoreText(currentPlayerId, playerScores[currentPlayerId]);
-        uIManager.SetSystemText(true, $"播放動畫中...");
+        uIManager.SetSystemText(false, 0);
         isWaitForAnim = true;
         StartCoroutine(NextRound());
     }
@@ -52,9 +52,11 @@ public class GameManager : MonoBehaviour
             
         closeAnim = false;
         isWaitForAnim = false;
+        uIManager.stars[currentPlayerId].SetActive(false);
         currentPlayerId++;
         currentPlayerId %= playerCount;
-        uIManager.SetSystemText(true, $"輪到第 <color=red>{currentPlayerId + 1}</color> 玩家");
+        uIManager.stars[currentPlayerId].SetActive(true);
+        uIManager.SetSystemText(true, currentPlayerId);
         uIManager.passBtn.SetActive(true);
         uIManager.closeAnimBtn.SetActive(false);
     }
@@ -65,9 +67,11 @@ public class GameManager : MonoBehaviour
             return;
 
         isWaitForAnim = false;
+        uIManager.stars[currentPlayerId].SetActive(false);
         currentPlayerId++;
         currentPlayerId %= playerCount;
-        uIManager.SetSystemText(true, $"輪到第 <color=red>{currentPlayerId + 1}</color> 玩家");
+        uIManager.stars[currentPlayerId].SetActive(true);
+        uIManager.SetSystemText(true, currentPlayerId);
     }
 
     //當沒有相機沒掃到照片時呼叫此方法來輪到下一位玩家

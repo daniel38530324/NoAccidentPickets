@@ -9,22 +9,30 @@ public class UIManager : MonoBehaviour
     public GameObject menu;
     
     public GameObject startInitMenu;
-    public Dropdown playerCountDropdown;
+    int charSelectedCount = 0;
+    public Text charSelectedText;
+    public bool[] selectedChar;
+    public GameObject[] charBtns;
+    public GameObject[] char_circle_Btns;
+    public GameObject systemWarnText;
 
     public GameObject settingMenu;
     public GameObject settingBtn;
 
-    public GameObject[] playerScorePanel;
+    //public GameObject[] playerScorePanel;
     public Text[] scoreTexts;
+    public Sprite[] allCharImages;
+    public Image[] playerImages;
+    public GameObject[] stars;
 
-    public GameObject systemCanvas;
-    public Text systemText;
+    public GameObject[] systemCanvas;
+    public Image currentPlayerImage;
     public GameObject passBtn;
     public GameObject closeAnimBtn;
 
     public void Initialize(int playerCount)
     {
-        if(playerCount == 4){
+        /*if(playerCount == 4){
             playerScorePanel[0].SetActive(false);
             playerScorePanel[1].SetActive(false);
         }else if(playerCount == 5){
@@ -33,9 +41,14 @@ public class UIManager : MonoBehaviour
         }else if(playerCount == 6){
             playerScorePanel[0].SetActive(true);
             playerScorePanel[1].SetActive(true);
-        }
+        }*/
         passBtn.SetActive(true);
         closeAnimBtn.SetActive(false);
+        stars[0].SetActive(true);
+        for (int i = 1; i < 3; i++)
+        {
+            stars[i].SetActive(false);
+        }
     }
 
     public void Btn_StartGame()
@@ -44,12 +57,39 @@ public class UIManager : MonoBehaviour
         startInitMenu.SetActive(true);
     }
 
+    public void Btn_SelectChar(int charId)
+    {
+        bool isSelected = selectedChar[charId];
+        if(!isSelected){
+            if(charSelectedCount == 4){
+                systemWarnText.SetActive(true);
+                return;
+            } 
+            
+            selectedChar[charId] = !isSelected;
+            charBtns[charId].SetActive(false);
+            char_circle_Btns[charId].SetActive(true);
+            playerImages[charSelectedCount].sprite = allCharImages[charId];
+            charSelectedCount++;
+        }else{
+            selectedChar[charId] = !isSelected;
+            charBtns[charId].SetActive(true);
+            char_circle_Btns[charId].SetActive(false);
+            charSelectedCount--;
+        }
+        charSelectedText.text = charSelectedCount.ToString();
+    }
+
     public void Btn_StartInit()
     {
+        if(charSelectedCount != 4){
+                systemWarnText.SetActive(true);
+                return;
+        }
         startInitMenu.SetActive(false);
-        gameManager.Initialize(playerCountDropdown.value + 4);
+        gameManager.Initialize(4);
         settingBtn.SetActive(true);
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 4; i++)
         {
             scoreTexts[i].text = "0";
         }
@@ -61,6 +101,20 @@ public class UIManager : MonoBehaviour
         startInitMenu.SetActive(false);
         settingBtn.SetActive(false);
         settingMenu.SetActive(false);
+        BackToMenuInitialize();
+    }
+
+    void BackToMenuInitialize()
+    {
+        charSelectedCount = 0;
+        charSelectedText.text = "0";
+        systemWarnText.SetActive(false);
+        for (int i = 0; i < selectedChar.Length; i++)
+        {
+            selectedChar[i] = false;
+            charBtns[i].SetActive(true);
+            char_circle_Btns[i].SetActive(false);
+        }
     }
 
     public void Btn_Setting()
@@ -78,10 +132,11 @@ public class UIManager : MonoBehaviour
         scoreTexts[playerID].text = score.ToString();
     }
 
-    public void SetSystemText(bool _open, string _text)
+    public void SetSystemText(bool _open, int _playerIndex)
     {
-        systemCanvas.SetActive(_open);
-        systemText.text = _text;
+        systemCanvas[0].SetActive(_open);
+        systemCanvas[1].SetActive(!_open);
+        currentPlayerImage.sprite = playerImages[_playerIndex].sprite;
     }
 
     public void Btn_Skip()
