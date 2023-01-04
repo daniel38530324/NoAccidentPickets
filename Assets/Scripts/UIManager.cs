@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour
         passBtn.SetActive(true);
         closeAnimBtn.SetActive(false);
         stars[0].SetActive(true);
-        for (int i = 1; i < 3; i++)
+        for (int i = 1; i < 4; i++)
         {
             stars[i].SetActive(false);
         }
