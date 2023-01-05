@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
         uIManager.SetSystemText(false, 0);
         isWaitForAnim = true;
         StartCoroutine(NextRound());
+        FindObjectOfType<AudioManager>().GetScoreSound();
     }
     
     //輪到下為玩家行動時呼叫
